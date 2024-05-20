@@ -1,0 +1,11 @@
+#this is requirements.txt file in this text file we r mentioning the list of libraries that i have used in this project!!
+pandas
+numpy
+scikit-learn
+flask
+seaborn
+matplotlib
+dill
+python-dotenv
+pymysql
+-e . 
