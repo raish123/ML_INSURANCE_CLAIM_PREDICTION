@@ -1,0 +1,1 @@
+# this file we r writing the function in a such a way it provide functionality to entire application 
