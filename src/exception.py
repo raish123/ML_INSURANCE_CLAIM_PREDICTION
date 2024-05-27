@@ -2,7 +2,7 @@
 
 #importing all the important library which is used in this file.
 import os,sys
-from src.loggers import logging
+from src.logger import logging
 
 #I am creating an error message ka format that i want to display during runtime execution exception occur
 
