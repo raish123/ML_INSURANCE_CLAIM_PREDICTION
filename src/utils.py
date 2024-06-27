@@ -6,6 +6,7 @@ import pymysql #this library use to make connection btn python and mysql databas
 import os,sys
 from dotenv import load_dotenv
 import pandas as pd
+import dill
 
 #creating an object of load_dotenv class
 
@@ -40,3 +41,17 @@ def reading_data_server():
 
     except Exception as e:
         raise CustomException(e,sys) 
+    
+
+def SaveObject(filepath,object):
+    logging.info('Saving the object to Artifact Folder')
+    try:
+        #checking artifact folder exist or not
+        if not os.path.exists('artifacts'):
+            os.makedirs('artifacts',exist_ok=True)
+        with open(filepath,'wb') as file:
+            dill.dump(object,file)
+
+        logging.info('File saved successfully to Artifact Folder: %s', object)
+    except Exception as e:
+        raise CustomException(e,sys)
