@@ -6,6 +6,141 @@
     {% block title %}
 	<title>Flask-index</title>
     {% endblock %}
+	<style>
+		/* Basic reset */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Arial', sans-serif;
+			line-height: 1.6;
+			background: linear-gradient(to right, #f4f4f4, #dfe9f3);
+			color: #333;
+			animation: backgroundGradient 15s ease infinite;
+		}
+
+		@keyframes backgroundGradient {
+			0% {
+				background: linear-gradient(to right, #f4f4f4, #dfe9f3);
+			}
+			50% {
+				background: linear-gradient(to right, #dfe9f3, #f4f4f4);
+			}
+			100% {
+				background: linear-gradient(to right, #f4f4f4, #dfe9f3);
+			}
+		}
+
+		header {
+			background: linear-gradient(to right, #007BFF, #0056b3);
+			color: white;
+			padding: 1rem 0;
+			text-align: center;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		header h1 {
+			margin-bottom: 1rem;
+			animation: fadeInDown 1s ease-out;
+		}
+
+		@keyframes fadeInDown {
+			from {
+				opacity: 0;
+				transform: translateY(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		nav ul {
+			list-style: none;
+			padding: 0;
+		}
+
+		nav ul li {
+			display: inline;
+			margin-right: 15px;
+		}
+
+		nav ul li a {
+			color: white;
+			text-decoration: none;
+			padding: 5px 10px;
+			border-radius: 5px;
+			transition: background-color 0.3s ease, transform 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			transform: scale(1.1);
+		}
+
+		main {
+			padding: 20px;
+			background: white;
+			margin: 20px auto;
+			max-width: 800px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+			animation: fadeIn 1s ease-out;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		main p {
+			margin-bottom: 20px;
+		}
+
+		.registration-link-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		.registration-link-container a {
+			display: inline-block;
+			margin-top: 10px;
+			padding: 10px 20px;
+			background-color: #007BFF;
+			color: white;
+			text-decoration: none;
+			border-radius: 5px;
+			transition: background-color 0.3s ease, transform 0.3s ease;
+		}
+
+		.registration-link-container a:hover {
+			background-color: #0056b3;
+			transform: scale(1.1);
+		}
+
+		footer {
+			text-align: center;
+			padding: 0.5rem 0;
+			background: linear-gradient(to right, #333, #555);
+			color: white;
+			position: fixed;
+			width: 100%;
+			bottom: 0;
+			box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		footer span {
+			display: block;
+			margin-bottom: 10px;
+		}
+	</style>
 </head>
 <body>
 	<div>
@@ -17,13 +152,10 @@
 					<li><a href="{{url_for('index')}}">Home</a></li>
 					<li><a href="{{url_for('register')}}">Register</a></li>
 					<li><a href="{{url_for('login')}}">login</a></li>
-					<li><a href="#prediction">prediction</a></li>
+					<li><a href="{{url_for('logout')}}">logout</a></li>
 				</ul>
-
 			</nav>
-
 		</div>
-
 	</header>
     {% block main %}
 	<main>
@@ -31,19 +163,17 @@
 			<p>
 				This project aims to predict whether an insurance claim will be made based on various features of the policyholders. The dataset includes attributes such as age, sex, BMI, number of children, smoking status, region, charges, and whether an insurance claim was made.
 			</p>
-			<a href="{{url_for('register')}}">Click Here Do Registration</a>
+			<div class="registration-link-container">
+				<a href="{{url_for('register')}}">Click Here Do Registration</a>
+			</div>
 		</div>
 	</main>
     {% endblock %}
 	<br><br>
 	<footer>
-		<span>Building Room No B/10 Mahatma Kabir Nagar Chakala Sahar Road Andheri East Mumbai Maharashtra Pincode 400099<br>Contact Number 9326742598</span><br>
+		<span>Building Room No B/10 Mahatma Kabir Nagar Chakala Sahar Road Andheri East Mumbai Maharashtra Pincode 400099<br>Contact Number 9326742598</span>
 		&copy; 2024 Prediction.com. All Rights Reserved.
-		
 	</footer>
-
-
 	</div>
-
 </body>
 </html>

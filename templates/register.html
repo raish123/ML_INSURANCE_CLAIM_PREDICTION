@@ -1,53 +1,127 @@
-<!-- here we r using templates inheritance concept here this is child template will inheri all block tag from
- parent templates index.html and overwrite the block tag with new tags -->
+<!-- here we are using templates inheritance concept here this is child template will inherit all block tags from parent templates index.html and overwrite the block tag with new tags -->
 
-<!-- for inheriting the parant tag following line of code we have to write -->
+<!-- for inheriting the parent tag following line of code we have to write -->
 
 {% extends "index.html" %}
 
 {% block title %}
-    <title>
-        Flask-register
-    </title>
-{%endblock%}
-
+    <title>Flask-register</title>
+{% endblock %}
 
 {% block main %}
-    <div>
-        <form action="{{url_for('register')}}" method="post",autocomplete="off">
+    <div class="form-container">
+        <form action="{{url_for('register')}}" method="post" autocomplete="off">
             <h2>Please Fill Registration Details</h2><br>
             <table>
                 <tr>
-                    <td>Email </td>
+                    <td>Email</td>
                     <td>
                         <input type="text" name="email" autocomplete="off">
                     </td>
                 </tr>
-
                 <tr>
-                    <td>Username </td>
+                    <td>Username</td>
                     <td>
                         <input type="text" name="username" autocomplete="off">
                     </td>
                 </tr>
-
                 <tr>
-                    <td>Password </td>
+                    <td>Password</td>
                     <td>
                         <input type="password" name="password_hash" autocomplete="off">
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="submit" value="submit">
-                        <input type="reset" value="reset">
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                        <br><br><a href="{{url_for('login')}}">Already Registered? Click Here to Login</a>
+
                     </td>
                 </tr>
             </table>
         </form>
-        <br>
-        <a href="{{url_for('login')}}">Already Register? Click Here to Login</a>
-
+       
     </div>
 
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        table td {
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        input[type="reset"] {
+            background-color: #6c757d;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-container a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .form-container a:hover {
+            color: #0056b3;
+        }
+    </style>
 {% endblock %}
