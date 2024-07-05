@@ -7,6 +7,8 @@ import os,sys
 from dotenv import load_dotenv
 import pandas as pd
 import dill
+from sklearn.metrics import classification_report,confusion_matrix,f1_score,recall_score,precision_score,accuracy_score
+from sklearn.model_selection import GridSearchCV
 
 #creating an object of load_dotenv class
 
@@ -53,5 +55,54 @@ def SaveObject(filepath,object):
             dill.dump(object,file)
 
         logging.info('File saved successfully to Artifact Folder: %s', object)
+    except Exception as e:
+        raise CustomException(e,sys)
+
+
+#creating a function for training the model
+
+def evaluate_model(x_train, y_train, x_test, y_test, param_grid1, models):
+    report = {}  # Storing the result of model in report object
+    logging.info('Training the model')
+    
+    try:
+        # Iterating each algorithm object one by one 
+        for i in list(models.keys()):  # Key iterating
+            model = models[i]  # Iterating and accessing each algorithm object
+
+            # Accessing param_grid value accordingly
+            para = param_grid1[i]
+            
+            # Hyper-tuning of each model using GridSearchCV algorithm
+            grid_search = GridSearchCV(estimator=model, param_grid=para, cv=5)  # Return best hyperparameter
+
+            # Training the model using grid_search algorithm
+            grid_search.fit(x_train, y_train)
+
+            # Setting best parameters of hyper-tuning to the model
+            model.set_params(**grid_search.best_params_)
+
+            # Training the model after finding out best hyperparameters and setting them into model object
+            model.fit(x_train, y_train)
+
+            # Testing the data using test data
+            y_pred = model.predict(x_test)
+
+            # Evaluating the accuracy of model
+            testing_accuracy_model = accuracy_score(y_test, y_pred)
+
+            report[i] = testing_accuracy_model
+
+        return report
+    
+    except Exception as e:
+        raise CustomException(e,sys)
+    
+    
+def LoadObject(filepath):
+    try:
+        with open(filepath, 'rb') as f:
+            obj = dill.load(f)
+        return obj
     except Exception as e:
         raise CustomException(e,sys)
