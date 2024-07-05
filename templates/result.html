@@ -1,0 +1,23 @@
+<!-- here we r using templates inheritance concept here this is child template will inheri all block tag from
+ parent templates index.html and overwrite the block tag with new tags -->
+
+<!-- for inheriting the parant tag following line of code we have to write -->
+
+{% extends "index.html" %}
+
+{% block title %}
+    <title>
+        Flask-PredictionResult
+    </title>
+{%endblock%}
+
+
+{% block main %}
+    <div>
+        <h2>Person Claiming Insurance {{result}}</h2>
+        <br>
+        <a href="{{url_for('logout')}}">Click Here to Logout</a>
+
+    </div>
+
+{% endblock %}
