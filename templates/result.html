@@ -1,23 +1,46 @@
-<!-- here we r using templates inheritance concept here this is child template will inheri all block tag from
- parent templates index.html and overwrite the block tag with new tags -->
+<!-- here we are using templates inheritance concept here this is child template will inherit all block tags from parent templates index.html and overwrite the block tag with new tags -->
 
-<!-- for inheriting the parant tag following line of code we have to write -->
+<!-- for inheriting the parent tag following line of code we have to write -->
 
 {% extends "index.html" %}
 
 {% block title %}
-    <title>
-        Flask-PredictionResult
-    </title>
-{%endblock%}
-
+    <title>Flask-PredictionResult</title>
+{% endblock %}
 
 {% block main %}
-    <div>
-        <h2>Person Claiming Insurance {{result}}</h2>
+    <div class="result-container">
+        <h2>Person Claiming Insurance-->{% if result == 1 %}yes claiming{% else %}not claiming{% endif %}</h2>
         <br>
         <a href="{{url_for('logout')}}">Click Here to Logout</a>
-
     </div>
 
+    <style>
+        .result-container {
+            text-align: center;
+            margin-top: 20vh;
+        }
+
+        .result-container h2 {
+            font-size: 24px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .result-container a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+
+        .result-container a:hover {
+            color: #0056b3;
+        }
+    </style>
 {% endblock %}
