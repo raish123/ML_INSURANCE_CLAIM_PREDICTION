@@ -62,11 +62,11 @@ jobs:
       - name: Pull latest image from Docker Hub
         run: |
           docker pull raish123/insuranceclaim:latest
-         
+
       # - name: Stop and remove container if running
       #   run: |
       #    docker ps -q --filter "name=insuranceclaim" | grep -q . && docker stop insuranceclaim && docker rm -fv insuranceclaim
-       
+
       - name: Run Docker Image to serve users
         run: |
           docker run -d -p 8080:8080 --ipc="host" --name=insuranceclaim -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_REGION }}' raish123/insuranceclaim:latest
