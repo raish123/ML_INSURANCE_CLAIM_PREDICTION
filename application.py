@@ -3,6 +3,7 @@
 
 
 from flask import Flask, render_template, redirect, request, url_for
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import UserModel, load_user,db,login
