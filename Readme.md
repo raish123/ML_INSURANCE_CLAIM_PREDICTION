@@ -1,6 +1,6 @@
 # Insurance Claim Prediction
 
-## Project Overview
+## Project Overviews
 
 This project aims to predict whether an insurance claim will be made based on various features of the policyholders. The dataset includes attributes such as age, sex, BMI, number of children, smoking status, region, charges, and whether an insurance claim was made.
 
